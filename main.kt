@@ -24,19 +24,30 @@ fun menu() {
 
     while (menuKeepGoing) //I want this menu to repeat itself until the user asks to quit, which is why the bulk of the menu is inside a while loop.
     {
-        println("Enter 1 to display the list of recipes.")
+        println("Enter the corresponding number to access the feature.")
+        println("1: to display the list of recipes.")
+        println("2: Add a new recipe to the list. (This feature is still in progress)")//ToDo
+        println("3: Delete a recipe from the list (This feature is still in progress)")//ToDo
+        println("3: Save cookbook to file. (This feature is still in progress)")//Todo
+        println("4: Load cookbook from file. (This feature is still in progress)")//ToDo
         println("Enter 0 to quit.")
 
         //https://kotlinlang.org/docs/read-standard-input.html I read this page to learn how to obtain input in Kotlin.
         var menuInput: Int = readln().toInt()
-        //https://youtu.be/Si8rN5J249M?si=t3GapkX09KvXxmlR I had a problem in setting up the above input statement. This video helped solve the problem.
+        // * https://youtu.be/Si8rN5J249M?si=t3GapkX09KvXxmlR I had a problem in setting up the above input statement. This video helped solve the problem. This problem is not related to the actual code, but the development environment extentions (Code Runner). To any users having issues with getting input through this program, check this video.
 
         //https://www.tutorialspoint.com/how-to-implement-switch-case-statement-in-kotlin
         //Now I want to use switch case to address the user response. Kotlin apparently doesn't use switch case, but it uses the keyword "when", which is even better, in my opinion. 
+        
+        println()//This creates an empty line for the sake of readability.
         when (menuInput)
         {
             0 -> menuKeepGoing = false
             1 -> displayRecipeList()
+            2 -> println("Add feature not developed yet")//ToDo
+            3 -> println("Delete feature not developed yet")//ToDo
+            4 -> println("Save feature not developed yet")//ToDo
+            5 -> println("Load feature not developed yet")//ToDo
             else -> println("Error, unfamiliar input. Please try again.")
         }
         
@@ -44,7 +55,23 @@ fun menu() {
 
 }
 
-fun displayRecipeList() {
+fun displayRecipeList() {//ToDo
+
+}
+
+fun addRecipe() {//ToDo
+
+}
+
+fun deleteRecipe() {//ToDo
+    
+}
+
+fun loadRecipeList() {//Todo
+
+}
+
+fun saveRecipeList() {//Todo
 
 }
 
