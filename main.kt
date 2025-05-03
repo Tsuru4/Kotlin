@@ -22,15 +22,14 @@ fun menu() {
 
     //The setup is done. Now I want to run the actual while loop, which will make up the main part of the menu.
 
-    while (menuKeepGoing)
+    while (menuKeepGoing) //I want this menu to repeat itself until the user asks to quit, which is why the bulk of the menu is inside a while loop.
     {
         println("Enter 1 to display the list of recipes.")
         println("Enter 0 to quit.")
 
         //https://kotlinlang.org/docs/read-standard-input.html I read this page to learn how to obtain input in Kotlin.
-        //! The input function is not working as expected! Fix this ASAP!
         var menuInput: Int = readln().toInt()
-        
+        //https://youtu.be/Si8rN5J249M?si=t3GapkX09KvXxmlR I had a problem in setting up the above input statement. This video helped solve the problem.
 
         //https://www.tutorialspoint.com/how-to-implement-switch-case-statement-in-kotlin
         //Now I want to use switch case to address the user response. Kotlin apparently doesn't use switch case, but it uses the keyword "when", which is even better, in my opinion. 

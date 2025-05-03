@@ -8,7 +8,7 @@ A program which can store and display cooking recipes from a list.
 
 **Project Goals**: 
 Learn how to write in Kotlin.
-Learn how to use mutable and immutable variables.
+Learn how to use mutable and immutable variables. (Done)
 
 Program will have a menu (To practice loops).
 Program will store cooking recipes (as a class) inside a list.
@@ -45,8 +45,9 @@ To recreate the development environment, you need the following software and/or 
 
 I found these websites useful in developing this software:
 
-* [Website Title](Link)
-*
+* [Kotlin Lang](https://kotlinlang.org/docs/read-standard-input.html)
+* [User Input in VS Code with Code Runner!](https://youtu.be/Si8rN5J249M?si=t3GapkX09KvXxmlR)
+* [Tutorialspoint](https://www.tutorialspoint.com/how-to-implement-switch-case-statement-in-kotlin)
 *
 
 ## Future Work
