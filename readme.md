@@ -1,10 +1,22 @@
 ## Overview
 
-**Project Title**:
+**Project Title**: 
+Recipe Organizer
 
-**Project Description**:
+**Project Description**: 
+A program which can store and display cooking recipes from a list.
 
-**Project Goals**:
+**Project Goals**: 
+Learn how to write in Kotlin.
+Learn how to use mutable and immutable variables.
+
+Program will have a menu (To practice loops).
+Program will store cooking recipes (as a class) inside a list.
+Program can display these recipes on user request.
+
+(The following goals are lower priority and will be added as time allows.)
+User can add new recipes to the list.
+User can request adjustments to the recipe display based on batch size.
 
 ## Instructions for Build and Use
 
@@ -24,9 +36,10 @@ Instructions for using the software:
 
 To recreate the development environment, you need the following software and/or libraries with the specified versions:
 
-* First thing here
-*
-*
+* Visual Studio Code
+* Java Development Kit (Installed through the Oracle website.)
+* Kotlin Extension (Found in the Visual Studio Code extensions.)
+* Code Runner Extension (Also found in VSC extensions.)
 
 ## Useful Websites to Learn More
 
