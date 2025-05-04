@@ -45,10 +45,10 @@ To recreate the development environment, you need the following software and/or 
 
 I found these websites useful in developing this software:
 
-* [Kotlin Lang](https://kotlinlang.org/docs/read-standard-input.html)
+* [Kotlin Lang](https://kotlinlang.org/docs/home.html)
 * [User Input in VS Code with Code Runner!](https://youtu.be/Si8rN5J249M?si=t3GapkX09KvXxmlR)
 * [Tutorialspoint](https://www.tutorialspoint.com/how-to-implement-switch-case-statement-in-kotlin)
-*
+* [GeeksforGeeks](https://www.geeksforgeeks.org/kotlin-list-listof/)
 
 ## Future Work
 
