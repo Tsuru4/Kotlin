@@ -11,7 +11,7 @@ public class Recipe (private val _name: String, private val _cookTime: Double, p
         println("Ingredients:")
         for (ingredient in _ingredientList)
         {
-            println(ingredient)
+            println(ingredient.getSummary())
         }
         println()
         for (instruction in _instructions)
@@ -22,7 +22,8 @@ public class Recipe (private val _name: String, private val _cookTime: Double, p
         println()
     }
 
-    public fun getName():String{
+    public fun getName():String
+    {
         return _name
     }
 

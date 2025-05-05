@@ -11,9 +11,17 @@ public class RecipeBook(private var _filename: String = "", private var _recipeL
 
     //I had to use Google AI to understand how to create an empty list because none of the websites I searched for were giving instructions which I could understand. All of the other websites were telling me to use mutableListOf() or listOf(), neither of which were suitable for the situation in the line above. On the other hand, emptyList(), which is what Google AI told me to use, is perfect for creating a list as a property in a class. 
 
+    public fun displayRecipeNames(){
+        var i:Int = 0
+        for (recipe in _recipeList)
+        {
+            i++
+            var name:String = recipe.getName()
+            println("$i $name")
+        }
+    }
 
-    public fun displayRecipe(recipeID:String)
-    {
+    public fun displayRecipe(recipeID:String){
         for (recipe in _recipeList)
         {
             if (recipe.getName() == recipeID)
@@ -21,6 +29,15 @@ public class RecipeBook(private var _filename: String = "", private var _recipeL
                 recipe.displayRecipe()
             }
         }
+    }
+
+    //ToDo This function has not been tested yet.
+    public fun displayRecipe(recipeID:Int){
+        _recipeList[recipeID].displayRecipe()
+    }
+
+    public fun addRecipe(name:String, cookTime:Double, ingredientList:MutableList<Ingredient>, instructions:MutableList<String>){
+        _recipeList.add(Recipe(name, cookTime, ingredientList, instructions))
     }
 
 }

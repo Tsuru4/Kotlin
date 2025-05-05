@@ -38,6 +38,8 @@ fun menu() {
 
     var recipeBook1 = RecipeBook()
 
+    generateTestRecipes(recipeBook1)
+
     //The setup for the while loop is done. Now I want to run the actual loop. The loop will make up the bulk of the menu.
 
     while (menuKeepGoing) //I want this menu to repeat itself until the user asks to quit.
@@ -74,7 +76,7 @@ fun menu() {
                 menuKeepGoing = false
             }
             1 -> displayRecipeList(recipeBook1)
-            2 -> addRecipe()
+            2 -> addRecipe(recipeBook1)
             3 -> deleteRecipe()
             4 -> saveRecipeList()
             5 -> loadRecipeList()
@@ -96,19 +98,26 @@ fun menu() {
 /**
  * Displays the names of all recipes in the list, then optionally displays details on a recipe of the user's choosing. Function is still incomplete.
  */
-fun displayRecipeList(recipeBook:RecipeBook) {//ToDo
+fun displayRecipeList(recipeBook:RecipeBook) {
     println("Here are all the recipes.")
-    //ToDo create a function in RecipeBook class which lists all recipes in the book, with their ID numbers.
-    
+    recipeBook.displayRecipeNames()
     println("Which recipe do you want to view?")
+    
+    //Todo optionally cast this as an integer
     val recipeID: String = readln() 
     
-    //ToDo Create a function in the RecipeBook class which recieves the above String recipeID as a parameter and displays that recipe.
     recipeBook.displayRecipe(recipeID)
-    //
+    
 }
 
-fun addRecipe() {//ToDo
+fun addRecipe(recipeBook:RecipeBook) {//ToDo
+    println("Please enter the new recipe name.")
+    val name:String = readln()
+    println("Please enter the total cook time (in minutes).")
+    val cookTime:Double = readln().toDouble()
+    //ToDo collect a list of ingredients.
+    //ToDo collect a list of instructions.
+    //ToDo pass the parameters to the recipeBook.addRecipe() method.
 
 }
 
@@ -133,4 +142,12 @@ fun saveRecipeList() {//Todo
 
 fun welcome() {
     println("Hello! Welcome to my recipe display program!")
+}
+
+
+fun generateTestRecipes(recipeBook:RecipeBook)
+{
+    recipeBook.addRecipe("Pizza", 10.0, mutableListOf(Ingredient("Flour", 2.5), Ingredient("Water", 1.0)), mutableListOf("Bake"))
+    recipeBook.addRecipe("Banana Bread", 55.0, mutableListOf(Ingredient("Flour", 1.3), Ingredient("Water", 0.3)), mutableListOf("Bake"))
+    recipeBook.addRecipe("Dinner Rolls", 10.0, mutableListOf(Ingredient("Flour", 2.0), Ingredient("Water", 3.0)), mutableListOf("Bake"))
 }

@@ -1,13 +1,11 @@
 
 
-public class Ingredient(private val _name:String, private val _quantity:Double) {
+public class Ingredient(private val _name:String, private val _quantity:Double, private val _unitOfMeasurment:String = "cups") {
     
     //unit of measurement
 
-    public fun getName():String {
-        return _name
-    }
-    public fun getQuantity():Double {
-        return _quantity
+    public fun getSummary():String
+    {
+        return "$_quantity $_unitOfMeasurment of $_name"
     }
 }
