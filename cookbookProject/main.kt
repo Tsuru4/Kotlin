@@ -46,8 +46,8 @@ fun menu() {
     {
         //Here I give the user instructions on how to use the menu.
         println("Enter the corresponding number to access the feature.")
-        println("1: Display the list of recipes. (Currently under development.)")//ToDo
-        println("2: Add a new recipe to the list. (This feature is still in progress)")//ToDo
+        println("1: Display the list of recipes.")
+        println("2: Add a new recipe to the list.")
         println("3: Delete a recipe from the list (This feature is still in progress)")//ToDo
         println("3: Save cookbook to file. (This feature is still in progress)")//Todo
         println("4: Load cookbook from file. (This feature is still in progress)")//ToDo
@@ -110,14 +110,34 @@ fun displayRecipeList(recipeBook:RecipeBook) {
     
 }
 
-fun addRecipe(recipeBook:RecipeBook) {//ToDo
-    println("Please enter the new recipe name.")
+fun addRecipe(recipeBook:RecipeBook) {
+    println("Please enter the new recipe name:")
     val name:String = readln()
-    println("Please enter the total cook time (in minutes).")
+    println("Please enter the total cook time (in minutes):")
     val cookTime:Double = readln().toDouble()
-    //ToDo collect a list of ingredients.
-    //ToDo collect a list of instructions.
-    //ToDo pass the parameters to the recipeBook.addRecipe() method.
+    println("Enter the ingredient name. (Enter 0 if there are no ingredients):")
+    var ingredientList:MutableList<Ingredient> = mutableListOf()
+    var ingredientName = readln()
+    while (ingredientName != "0")
+    {
+        println("Enter the unit of measurement:")
+        var unitOfMeasurement = readln()
+        println("Enter the quantity:")
+        var quantity = readln().toDouble()
+        ingredientList.add(Ingredient(ingredientName, quantity, unitOfMeasurement))
+        println("Enter the next ingredient name. (Enter 0 if there are no more ingredients):")
+        ingredientName = readln()
+    }
+    println("Enter some cooking instructions. Multiple lines are allowed. Enter a line with just 0 when done.")
+    var instruction = readln()
+    var instructions:MutableList<String> = mutableListOf()
+    while (instruction != "0")
+    {
+        instructions.add(instruction)
+        println("Enter some cooking instructions. Multiple lines are allowed. Enter a line with just 0 when done.")
+        instruction = readln()
+    }
+    recipeBook.addRecipe(name, cookTime, ingredientList, instructions)
 
 }
 
