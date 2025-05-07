@@ -40,4 +40,15 @@ public class RecipeBook(private var _filename: String = "", private var _recipeL
         _recipeList.add(Recipe(name, cookTime, ingredientList, instructions))
     }
 
+    public fun deleteRecipe(recipeID:String){
+        for (recipe in _recipeList)
+        {
+            if (recipe.getName() == recipeID)
+            {
+                _recipeList.remove(recipe)
+                return
+            }
+        }
+    }
+
 }

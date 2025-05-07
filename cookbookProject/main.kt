@@ -77,7 +77,7 @@ fun menu() {
             }
             1 -> displayRecipeList(recipeBook1)
             2 -> addRecipe(recipeBook1)
-            3 -> deleteRecipe()
+            3 -> deleteRecipe(recipeBook1)
             4 -> saveRecipeList()
             5 -> loadRecipeList()
             else -> {
@@ -104,6 +104,7 @@ fun displayRecipeList(recipeBook:RecipeBook) {
     println("Which recipe do you want to view?")
     
     //Todo optionally cast this as an integer
+    //To cast it as an integer, I would need to understand how try catch works in Kotlin.
     val recipeID: String = readln() 
     
     recipeBook.displayRecipe(recipeID)
@@ -141,8 +142,10 @@ fun addRecipe(recipeBook:RecipeBook) {
 
 }
 
-fun deleteRecipe() {//ToDo
-    
+fun deleteRecipe(recipeBook:RecipeBook) {//ToDo
+    println("Which recipe do you want deleted?")
+    val recipeID:String = readln()
+    recipeBook.deleteRecipe(recipeID)
 }
 
 fun loadRecipeList() {//Todo
@@ -153,8 +156,8 @@ fun saveRecipeList() {//Todo
 
 }
 
-//ToDo create a method in RecipeBook to reorganize the recipe book and swap pages in the book.
-//ToDo create a menu function called moveRecipe() to call that recipe RecipeBook's Swapping method.
+//ToDo create a method in RecipeBook to reorganize the recipe book and move pages in the book.
+//ToDo create a menu function called moveRecipe() to call that recipe RecipeBook's reorganizing method.
 //ToDo impliment moveRecipe() in the menu() function.
 
 //ToDo create features to load recipes from a second recipe book and copy and/or merge them with the first book.
