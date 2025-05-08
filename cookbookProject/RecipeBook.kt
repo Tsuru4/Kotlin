@@ -33,7 +33,7 @@ public class RecipeBook(private var _filename: String = "", private var _recipeL
 
     //ToDo This function has not been tested yet.
     public fun displayRecipe(recipeID:Int){
-        _recipeList[recipeID].displayRecipe()
+        _recipeList[recipeID - 1].displayRecipe()
     }
 
     public fun addRecipe(name:String, cookTime:Double, ingredientList:MutableList<Ingredient>, instructions:MutableList<String>){
@@ -49,6 +49,16 @@ public class RecipeBook(private var _filename: String = "", private var _recipeL
                 return
             }
         }
+    }
+
+    //ToDo This function has not been tested or implemented yet.
+    public fun deleteRecipe(recipeID:Int) {
+        _recipeList.removeAt(recipeID - 1)
+    }
+
+    //ToDo
+    public fun saveRecipeBook(fileName:String){
+        
     }
 
 }

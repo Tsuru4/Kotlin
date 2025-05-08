@@ -7,8 +7,6 @@
 //I have included several comments to document my code. While the comments may be excessive, my purpose in writing these comments is so that not just myself, but anyone unfamiliar with Kotlin but at least somewhat familiar with basic programming concepts can easily learn about Kotlin by reading my code.
 
 
-//ToDo Write a RecipeBook class and implement it.
-
 //This is the main function. Any good program (to my knowledge) requires a main function. In some languages, main functions require parameters inside the parethesis to go with the main function. Fortunately, Kotlin was updated with a feature which does not require parameters inside the main function, making it simple for me and allowing me to leave the inside of the parenthesis empty.
 //All other functions are simply appendanges to a main function. They do not run unless the main function calls them. A program begins and ends with its main program.
 fun main() {
@@ -48,9 +46,9 @@ fun menu() {
         println("Enter the corresponding number to access the feature.")
         println("1: Display the list of recipes.")
         println("2: Add a new recipe to the list.")
-        println("3: Delete a recipe from the list (This feature is still in progress)")//ToDo
-        println("3: Save cookbook to file. (This feature is still in progress)")//Todo
-        println("4: Load cookbook from file. (This feature is still in progress)")//ToDo
+        println("3: Delete a recipe from the list.")
+        println("3: Save cookbook to file. (This feature is still in development)")//Todo
+        println("4: Load cookbook from file. (This feature is still in development)")//ToDo
         println("Enter 0 to quit.")
 
         //https://kotlinlang.org/docs/read-standard-input.html I read this page to learn how to obtain input in Kotlin.
@@ -78,8 +76,8 @@ fun menu() {
             1 -> displayRecipeList(recipeBook1)
             2 -> addRecipe(recipeBook1)
             3 -> deleteRecipe(recipeBook1)
-            4 -> saveRecipeList()
-            5 -> loadRecipeList()
+            4 -> saveRecipeList()//ToDo
+            5 -> loadRecipeList()//ToDO
             else -> {
                 println("Error, unexpected input. Exiting menu as if user had entered 0.)")
                 menuKeepGoing = false
@@ -104,7 +102,7 @@ fun displayRecipeList(recipeBook:RecipeBook) {
     println("Which recipe do you want to view?")
     
     //Todo optionally cast this as an integer
-    //To cast it as an integer, I would need to understand how try catch works in Kotlin.
+    //To cast it as an integer, in the way I want it, I would first need to understand how try catch works in Kotlin.
     val recipeID: String = readln() 
     
     recipeBook.displayRecipe(recipeID)
@@ -160,8 +158,7 @@ fun saveRecipeList() {//Todo
 //ToDo create a menu function called moveRecipe() to call that recipe RecipeBook's reorganizing method.
 //ToDo impliment moveRecipe() in the menu() function.
 
-//ToDo create features to load recipes from a second recipe book and copy and/or merge them with the first book.
-
+//ToDo create features to load recipes from a second recipe book and copy and/or merge them with the contents from the first book.
 
 fun welcome() {
     println("Hello! Welcome to my recipe display program!")
