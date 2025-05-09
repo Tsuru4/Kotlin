@@ -34,16 +34,15 @@ fun menu() {
     //I have explicitly cased this variable as a Boolean. It seems data types need to be capitalized.
     //I am now noticing that Kotlin does not use punctuation. I don't like this, but whatever. 
 
-    var recipeBook1 = RecipeBook()
+    var recipeBook1 = RecipeBook(_filename = "test_recipe_book")
 
     generateTestRecipes(recipeBook1)
 
     //The setup for the while loop is done. Now I want to run the actual loop. The loop will make up the bulk of the menu.
-
-    while (menuKeepGoing) //I want this menu to repeat itself until the user asks to quit.
-    {
+    //This is actually a do while loop, not a while loop. I wanted an opprotunity to demonstrate a do while loop, and this particular scenario fits naturally.
+    do{
         //Here I give the user instructions on how to use the menu.
-        println("Enter the corresponding number to access the feature.")
+        println("\nEnter the corresponding number to access the feature.")
         println("1: Display the list of recipes.")
         println("2: Add a new recipe to the list.")
         println("3: Delete a recipe from the list.")
@@ -52,7 +51,13 @@ fun menu() {
         println("Enter 0 to quit.")
 
         //https://kotlinlang.org/docs/read-standard-input.html I read this page to learn how to obtain input in Kotlin.
-        var menuInput: Int = readln().toInt()
+        var menuInput: Int = try {
+            readln().toInt()
+        }
+        catch (e:NumberFormatException)
+        {
+            -1
+        }
         //I explicitly cast this variable, menuInput, as an integer (Int). It would probable work just fine (or possibly even better) if I left the data type a String, but having it as an integer is easier for my mindset, and it makes the "when" statement I am about to use easier to for me to read.
         
         // * Because I am casting the user input as an integer, this means there will be a fatal error if the user inputs anything besides an integer. I am going to ignore this problem for now; the worst case scenario, the user just has to restart the program. The user will have lost any unsaved progress, so I should probably address potential crash eventually, but it isn't a high priority for me at this time.
@@ -86,7 +91,7 @@ fun menu() {
             //This is the end of the when loop. At this point, it goes back to the beginning, and checks to see if the initial condition(menuKeepGoing) it still true. If menuKeepGoing is still true, the loop restarts.
         }
         
-    }
+    } while (menuKeepGoing)
 
 }
 
@@ -94,7 +99,7 @@ fun menu() {
 //https://kotlinlang.org/docs/kotlin-doc.html#kdoc-syntax DocStrings are convenient ways to crate internal labels for function in many progamming languages. The comment below one line is a doc string. It is convenient because anything written inside the doc string is displayed when a programmer hovers the mouse over the name of the function. 
 
 /**
- * Displays the names of all recipes in the list, then optionally displays details on a recipe of the user's choosing. Function is still incomplete.
+ * Displays the names of all recipes in the list, then optionally displays details on a recipe of the user's choosing.
  */
 fun displayRecipeList(recipeBook:RecipeBook) {
     println("Here are all the recipes.")
@@ -110,14 +115,27 @@ fun displayRecipeList(recipeBook:RecipeBook) {
 }
 
 fun addRecipe(recipeBook:RecipeBook) {
+
     println("Please enter the new recipe name:")
     val name:String = readln()
+
     println("Please enter the total cook time (in minutes):")
-    val cookTime:Double = readln().toDouble()
+    val cookTime:Double = try {
+    readln().toDouble()
+    }
+    catch (e: NumberFormatException) {
+        -1.0
+    }
+    if(cookTime < 0.0)
+    {
+        println("Error, invalid input detected. \nCook time must be a number greater than 0. Words and negative numbers are not permitted \nReturning to menu.")
+        return
+    }
+
     println("Enter the ingredient name. (Enter 0 if there are no ingredients):")
     var ingredientList:MutableList<Ingredient> = mutableListOf()
     var ingredientName = readln()
-    while (ingredientName != "0")
+    while (ingredientName != "0" || ingredientName != "")
     {
         println("Enter the unit of measurement:")
         var unitOfMeasurement = readln()
@@ -127,10 +145,11 @@ fun addRecipe(recipeBook:RecipeBook) {
         println("Enter the next ingredient name. (Enter 0 if there are no more ingredients):")
         ingredientName = readln()
     }
+    
     println("Enter some cooking instructions. Multiple lines are allowed. Enter a line with just 0 when done.")
     var instruction = readln()
     var instructions:MutableList<String> = mutableListOf()
-    while (instruction != "0")
+    while (instruction != "0" || ingredientName != "")
     {
         instructions.add(instruction)
         println("Enter some cooking instructions. Multiple lines are allowed. Enter a line with just 0 when done.")
@@ -141,9 +160,23 @@ fun addRecipe(recipeBook:RecipeBook) {
 }
 
 fun deleteRecipe(recipeBook:RecipeBook) {//ToDo
-    println("Which recipe do you want deleted?")
-    val recipeID:String = readln()
-    recipeBook.deleteRecipe(recipeID)
+    if (recipeBook.isEmpty())
+    {
+        println("There are no recipes to delete.")
+    }
+    else
+    {
+        println("Which recipe do you want deleted? (If there are multiple recipes of the same name, only the first recipe will be deleted.)")
+        val recipeID:String = readln()
+        if (recipeBook.deleteRecipe(recipeID))
+        {
+            println("Deleted $recipeID successfully.")
+        }
+        else
+        {
+            println("Recipe with the name $recipeID was not found, and thus could not be deleted.")
+        }
+    }
 }
 
 fun loadRecipeList() {//Todo
@@ -151,7 +184,7 @@ fun loadRecipeList() {//Todo
 }
 
 fun saveRecipeList() {//Todo
-
+    //ToDo have an option to rename the recipebook filename.
 }
 
 //ToDo create a method in RecipeBook to reorganize the recipe book and move pages in the book.
