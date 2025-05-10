@@ -46,8 +46,9 @@ fun menu() {
         println("1: Display the list of recipes.")
         println("2: Add a new recipe to the list.")
         println("3: Delete a recipe from the list.")
-        println("3: Save cookbook to file. (This feature is still in development)")//Todo
-        println("4: Load cookbook from file. (This feature is still in development)")//ToDo
+        println("4: Rearrange recipes in the list.")
+        println("5: Save cookbook to file. (This feature is still in development)")//Todo
+        println("6: Load cookbook from file. (This feature is still in development)")//ToDo
         println("Enter 0 to quit.")
 
         //https://kotlinlang.org/docs/read-standard-input.html I read this page to learn how to obtain input in Kotlin.
@@ -81,8 +82,9 @@ fun menu() {
             1 -> displayRecipeList(recipeBook1)
             2 -> addRecipe(recipeBook1)
             3 -> deleteRecipe(recipeBook1)
-            4 -> saveRecipeList()//ToDo
-            5 -> loadRecipeList()//ToDO
+            4 -> reorganizeRecipeList(recipeBook1)
+            5 -> saveRecipeList()//ToDo
+            6 -> loadRecipeList()//ToDO
             else -> {
                 println("Error, unexpected input. Exiting menu as if user had entered 0.)")
                 menuKeepGoing = false
@@ -128,20 +130,33 @@ fun addRecipe(recipeBook:RecipeBook) {
     }
     if(cookTime < 0.0)
     {
-        println("Error, invalid input detected. \nCook time must be a number greater than 0. Words and negative numbers are not permitted \nReturning to menu.")
+        println("Error, invalid input detected. \nCook time must be a number greater than 0. Words and negative numbers are not permitted \nReturning to main menu.")
         return
     }
 
     println("Enter the ingredient name. (Enter 0 if there are no ingredients):")
     var ingredientList:MutableList<Ingredient> = mutableListOf()
     var ingredientName = readln()
-    while (ingredientName != "0" || ingredientName != "")
+    while (ingredientName != "0" && ingredientName != "")
     {
         println("Enter the unit of measurement:")
         var unitOfMeasurement = readln()
         println("Enter the quantity:")
-        var quantity = readln().toDouble()
+        var quantity = try {
+            readln().toDouble()
+        }
+        catch (e: NumberFormatException)
+        {
+            -1.0
+        }
+        if (quantity < 0.0)
+        {
+            println("Error, invalid input detected. \nCook time must be a number greater then 0. Words and negative numbers are not permitted. \nThrowing our ingredient from recipe. Please reenter this ingredient.")
+        }
+        else
+        {
         ingredientList.add(Ingredient(ingredientName, quantity, unitOfMeasurement))
+        }
         println("Enter the next ingredient name. (Enter 0 if there are no more ingredients):")
         ingredientName = readln()
     }
@@ -149,14 +164,14 @@ fun addRecipe(recipeBook:RecipeBook) {
     println("Enter some cooking instructions. Multiple lines are allowed. Enter a line with just 0 when done.")
     var instruction = readln()
     var instructions:MutableList<String> = mutableListOf()
-    while (instruction != "0" || ingredientName != "")
+    while (instruction != "0" && instruction != "")
     {
         instructions.add(instruction)
         println("Enter some cooking instructions. Multiple lines are allowed. Enter a line with just 0 when done.")
         instruction = readln()
     }
     recipeBook.addRecipe(name, cookTime, ingredientList, instructions)
-
+    println("Recipe recorded successfully.")
 }
 
 fun deleteRecipe(recipeBook:RecipeBook) {//ToDo
@@ -179,6 +194,74 @@ fun deleteRecipe(recipeBook:RecipeBook) {//ToDo
     }
 }
 
+fun reorganizeRecipeList(recipeBook:RecipeBook){
+    println("The recipes are currently in this order:")
+    recipeBook.displayRecipeNames()
+    println("How would you like to organize the recipes in this cookbook?")
+    println("1: Alphabetize.")
+    println("2: Cooktime.")
+    println("3: Custom.")
+    println("0: Nevermind.")
+
+    val menuInput:Int = try {
+        readln().toInt()
+    }
+    catch (e: NumberFormatException)
+    {
+        -1
+    }
+
+    println()
+
+    //this is a demonstation of "else if", though "when" works better for me in this situations like this where there is only one variable being compared.
+    if (menuInput == 1)
+    {
+        recipeBook.alphabetize()
+    }
+    else if (menuInput == 2)
+    {
+        recipeBook.orderByCookTime()
+    }
+    else if (menuInput == 3)
+    {
+        customSwap(recipeBook)
+    }
+    else if (menuInput != 0)
+    {
+        println("Inproper input detected. Please only use numbers when navigating the menu unless prompted otherwise.")
+    }
+}
+
+fun customSwap(recipeBook:RecipeBook)
+{
+    println("Custom Swap: we will move one recipe at a time. First, choose a recipe number.")
+    recipeBook.displayRecipeNames()
+    val recipeID = try {
+        readln().toInt()
+    }
+    catch (e: NumberFormatException)
+    {
+        -1
+    }
+    println("Next, please enter the new index number for this recipe. (All recipes numbers between the old and new location will be shifted by one.)")
+    val newRecipeID = try {
+        readln().toInt()
+    }
+    catch (e: NumberFormatException)
+    {
+        -1
+    }
+    if (recipeID < 1 || newRecipeID < 1)
+    {
+        println("Error, incorrect input detected.\n All input should be numbers greater than 0. \nReturning to main menu.")
+        return
+    }
+    if (!recipeBook.recipeSwap(recipeID, newRecipeID))
+    {
+        println("Error, input was out of range. Do not use input greater than the actual size of the recipe list.")
+    }
+}
+
 fun loadRecipeList() {//Todo
 
 }
@@ -187,9 +270,6 @@ fun saveRecipeList() {//Todo
     //ToDo have an option to rename the recipebook filename.
 }
 
-//ToDo create a method in RecipeBook to reorganize the recipe book and move pages in the book.
-//ToDo create a menu function called moveRecipe() to call that recipe RecipeBook's reorganizing method.
-//ToDo impliment moveRecipe() in the menu() function.
 
 //ToDo create features to load recipes from a second recipe book and copy and/or merge them with the contents from the first book.
 

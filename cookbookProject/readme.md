@@ -7,16 +7,16 @@ Recipe Organizer
 A program which can store and display cooking recipes from a list.
 
 **Project Goals**: 
-Learn how to write in Kotlin.
-Learn how to use mutable and immutable variables. (Done)
+* [x] Learn how to write in Kotlin.
+* [x]Learn how to use mutable and immutable variables. (Done)
 
-Program will have a menu (To practice loops).
-Program will store cooking recipes (as a class) inside a list.
-Program can display these recipes on user request.
+* [x] Program will have a menu (To practice loops).
+* [x] Program will store cooking recipes (as a class) inside a list.
+* [x] Program can display these recipes on user request.
 
 (The following goals are lower priority and will be added as time allows.)
-User can add new recipes to the list.
-User can request adjustments to the recipe display based on batch size.
+* [x] User can add new recipes to the list.
+* [ ] User can request adjustments to the recipe display based on batch size.
 
 ## Instructions for Build and Use
 
@@ -29,9 +29,7 @@ Steps to build and/or run the software:
 
 Instructions for using the software:
 
-1. First step here
-2.
-3.
+1. Follow the menu prompts in the terminal.
 
 ## Development Environment 
 
@@ -40,7 +38,7 @@ To recreate the development environment, you need the following software and/or 
 * Visual Studio Code
 * Java Development Kit (Installed through the Oracle website.)
 * Kotlin Extension (Found in the Visual Studio Code extensions.)
-* Code Runner Extension (Also found in VSC extensions.)
+* Code Runner Extension (Also found in VSC extensions. Not necessary, but it may be helpful at times.)
 
 ## Useful Websites to Learn More
 
@@ -51,11 +49,13 @@ I found these websites useful in developing this software:
 * [Tutorialspoint](https://www.tutorialspoint.com/how-to-implement-switch-case-statement-in-kotlin)
 * [GeeksforGeeks](https://www.geeksforgeeks.org/kotlin-list-listof/)
 * [Kotlintutorial](https://kotlintutorial.io/packages-and-import-in-kotlin/)
+* [Baeldung](https://www.baeldung.com/kotlin/sort)
 
 ## Future Work
 
 The following items I plan to fix, improve, and/or add to this project in the future:
 
-* [ ] First thing here
-* [ ]
-* [ ]
+* [ ] Edit main program to be able to recognize difference between Int and String and adapt accordingly when displaying or deleting recipes.
+* [ ] Add the ability to read and write files to save and load recipe books.
+* [ ] Add the ability to load from multiple recipe books and merge them into a single recipe book.
+* [ ] Add the ability to display custom sized batches.

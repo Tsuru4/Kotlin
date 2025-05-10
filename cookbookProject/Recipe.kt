@@ -27,5 +27,10 @@ public class Recipe (private val _name: String, private val _cookTime: Double, p
         return _name
     }
 
+    public fun getCookTime():Double
+    {
+        return _cookTime
+    }
+
 
 }

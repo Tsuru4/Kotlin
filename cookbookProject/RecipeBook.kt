@@ -74,7 +74,26 @@ public class RecipeBook(private var _filename: String, private var _recipeList:M
     }
 
     public fun renameRecipeBook(filename:String){
-        `_filename` = filename
+        _filename = filename
+    }
+
+    public fun alphabetize(){
+        _recipeList.sortBy{it.getName().lowercase()}
+    }
+
+    public fun orderByCookTime(){
+        _recipeList.sortByDescending {it.getCookTime()}
+    }
+
+    public fun recipeSwap(oldID:Int, newID:Int):Boolean{
+        if (oldID > _recipeList.size || newID > _recipeList.size)
+        {
+            return false
+        }
+        val placeHolderRecipe:Recipe = _recipeList[oldID-1]
+        _recipeList.removeAt(oldID-1)
+        _recipeList.add(newID-1, placeHolderRecipe)
+        return true
     }
 
 }
