@@ -9,7 +9,7 @@ A program which can store and display cooking recipes from a list.
 
 **Project Goals**: 
 * [x] Learn how to write in Kotlin.
-* [x]Learn how to use mutable and immutable variables. (Done)
+* [x] Learn how to use mutable and immutable variables. (Done)
 
 * [x] Program will have a menu (To practice loops).
 * [x] Program will store cooking recipes (as a class) inside a list.
