@@ -31,7 +31,6 @@ public class RecipeBook(private var _filename: String, private var _recipeList:M
         }
     }
 
-    //ToDo This function has not been tested yet.
     public fun displayRecipe(recipeID:Int){
         if (recipeID > 0 && recipeID <= _recipeList.size)
         _recipeList[recipeID - 1].displayRecipe()
@@ -58,7 +57,6 @@ public class RecipeBook(private var _filename: String, private var _recipeList:M
         return _recipeList.isEmpty()
     }
 
-    //ToDo This function has not been tested or implemented yet.
     public fun deleteRecipe(recipeID:Int):Boolean {
         if (_recipeList.size >= recipeID)
         {

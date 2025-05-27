@@ -110,10 +110,17 @@ fun displayRecipeList(recipeBook:RecipeBook) {
     
     //Todo optionally cast this as an integer
     //To cast it as an integer, in the way I want it, I would first need to understand how try catch works in Kotlin.
-    val recipeID: String = readln() 
     
-    recipeBook.displayRecipe(recipeID)
+    val recipeName: String = readln() 
     
+    if (recipeName.toIntOrNull() == null)
+    {
+        recipeBook.displayRecipe(recipeName)
+    }
+    else
+    {
+        recipeBook.displayRecipe(recipeName.toInt())
+    }
 }
 
 
@@ -184,14 +191,27 @@ fun deleteRecipe(recipeBook:RecipeBook) {//ToDo
     else
     {
         println("Which recipe do you want deleted? (If there are multiple recipes of the same name, only the first recipe will be deleted.)")
-        val recipeID:String = readln()
-        if (recipeBook.deleteRecipe(recipeID))
+        val recipeName:String = readln()
+        
+        var success:Boolean
+        if (recipeName.toIntOrNull() != null)
         {
-            println("Deleted $recipeID successfully.")
+            success = recipeBook.deleteRecipe(recipeName.toInt())
         }
         else
         {
-            println("Recipe with the name $recipeID was not found, and thus could not be deleted.")
+            success = recipeBook.deleteRecipe(recipeName)
+        }
+
+
+        
+        if (success)
+        {
+            println("Deleted $recipeName successfully.")
+        }
+        else
+        {
+            println("Recipe with the name $recipeName was not found, and thus could not be deleted.")
         }
     }
 }

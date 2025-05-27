@@ -56,7 +56,7 @@ I found these websites useful in developing this software:
 
 The following items I plan to fix, improve, and/or add to this project in the future:
 
-* [ ] Edit main program to be able to recognize difference between Int and String and adapt accordingly when displaying or deleting recipes.
+* [x] Edit main program to be able to recognize difference between Int and String and adapt accordingly when displaying or deleting recipes.
 * [ ] Add the ability to read and write files to save and load recipe books.
 * [ ] Add the ability to load from multiple recipe books and merge them into a single recipe book.
 * [ ] Add the ability to display custom sized batches.
